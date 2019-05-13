@@ -15,6 +15,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.inventoryandroidapp.models.Item
+import com.example.inventoryandroidapp.services.ItemService
+import com.example.inventoryandroidapp.services.ServiceBuilder
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.barcode.Barcode
@@ -22,6 +25,9 @@ import com.google.android.gms.vision.barcode.BarcodeDetector
 import java.util.jar.Manifest
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var detector: BarcodeDetector
     private lateinit var cameraSource: CameraSource
     private lateinit var tvBarcode: TextView
+    lateinit var stringResponse: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,10 +59,33 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        var itemService: ItemService = ServiceBuilder.builderService(ItemService::class.java)
+        var itemRequest: Call<List<Item>> = itemService.getItems()
+
+        var itemArray : Call<List<Item>> = itemRequest
+
+        itemRequest.enqueue(object : Callback<List<Item>> {
+            @SuppressLint("SetTextI18n")
+            override fun onFailure(call: Call<List<Item>>, t: Throwable) {
+                //tvError.text = "Could not retrieve categories."
+            }
+
+            override fun onResponse(call: Call<List<Item>>, response: Response<List<Item>>) {
+                stringResponse = response.body().toString()
+            }
+        })
+
         fabAddItem.setOnClickListener { view ->
-            val activityIntent = Intent(this, AddItemActivity::class.java)
-            activityIntent.putExtra("ITEM_NUMBER", tvBarcode.text)
-            startActivity(activityIntent)
+
+            if(stringResponse.contains(tvBarcode.text)){
+                val activityIntent = Intent(this, AddInventoryActivity::class.java)
+                activityIntent.putExtra("ITEM_NUMBER", tvBarcode.text)
+                startActivity(activityIntent)
+            }else {
+                val activityIntent = Intent(this, AddItemActivity::class.java)
+                activityIntent.putExtra("ITEM_NUMBER", tvBarcode.text)
+                startActivity(activityIntent)
+            }
         }
 
         cameraSource = CameraSource.Builder(this, detector).setRequestedPreviewSize(1024, 786)

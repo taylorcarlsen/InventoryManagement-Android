@@ -62,12 +62,6 @@ class AddItemActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<List<Category>>, response: Response<List<Category>>) {
-                /*var categories: ArrayList<Call<List<Category>>> = ArrayList()
-                categories.add(categoryRequest)
-
-                var adapter: ArrayAdapter<Call<List<Category>>> = ArrayAdapter<Call<List<Category>>>(
-                    mContext, android.R.layout.simple_spinner_dropdown_item,categories)
-                categorySpinner.setAdapter(adapter)*/
 
                 //Use this later
                 /*var adapter: ArrayAdapter<Category> = ArrayAdapter(mContext,
@@ -90,7 +84,6 @@ class AddItemActivity : AppCompatActivity() {
             baseQty = etBaseQuantity.text.toString()
             baseQuantity = baseQty.toInt()
             description = etDescription.text.toString()
-            //category = spinnerCategory.selectedItem.toString()
             name = etName.text.toString()
 
             var newItem = Item()
