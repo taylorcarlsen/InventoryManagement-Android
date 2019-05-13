@@ -4,4 +4,11 @@
     <string name="title_activity_add_item">AddItemActivity</string>
     <string name="title_activity_add_inventory">AddInventoryActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string-array name= "category_array">
+        <item>Home Goods</item>
+        <item>Office Supplies</item>
+        <item>Kitchen Supplies</item>
+        <item>Outdoor Equipment</item>
+        <item>Pet Supplies</item>
+    </string-array>
 </resources>

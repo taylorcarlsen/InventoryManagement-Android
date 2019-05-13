@@ -7,15 +7,17 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import android.widget.Adapter
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.inventoryandroidapp.models.Category
 import com.example.inventoryandroidapp.models.Item
 import com.example.inventoryandroidapp.services.CategoryService
 import com.example.inventoryandroidapp.services.ItemService
 import com.example.inventoryandroidapp.services.ServiceBuilder
-
 import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.content_add_item.*
+import org.json.JSONArray
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,6 +30,8 @@ class AddItemActivity : AppCompatActivity() {
     private var category = ""
     private var name = ""
     private var baseQty = ""
+    private lateinit var categoryArrayList: ArrayList<Category>
+    private lateinit var categoryDescriptions: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,18 @@ class AddItemActivity : AppCompatActivity() {
         val mContext: Context = this
 
         val categorySpinner : Spinner = findViewById(R.id.spinnerCategory)
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.category_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            categorySpinner.adapter = adapter
+        }
 
         var categoryService: CategoryService = ServiceBuilder.builderService(CategoryService::class.java)
         var categoryRequest: Call<List<Category>> = categoryService.getCategories()
@@ -54,13 +70,10 @@ class AddItemActivity : AppCompatActivity() {
                     mContext, android.R.layout.simple_spinner_dropdown_item,categories)
                 categorySpinner.setAdapter(adapter)*/
 
+                //Use this later
                 /*var adapter: ArrayAdapter<Category> = ArrayAdapter(mContext,
                     android.R.layout.simple_spinner_dropdown_item,response.body())
-                categorySpinner.setAdapter(adapter)
-                tvError.text = adapter.toString()*/
-
-                val fieldofficerlist: List<Category> = response.body().getCategories()
-
+                categorySpinner.setAdapter(adapter)*/
             }
         })
 
