@@ -1,13 +1,12 @@
 package com.example.inventoryandroidapp
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
-import android.widget.Adapter
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.inventoryandroidapp.models.Category
 import com.example.inventoryandroidapp.models.Item
@@ -78,10 +77,20 @@ class AddItemActivity : AppCompatActivity() {
         })
 
         fabAddItem.setOnClickListener { view ->
+
+            var selectedItem: String = categorySpinner.getSelectedItem().toString()
+            when{
+                selectedItem.equals("Home Goods") -> category = "f3ebad4b-c6f1-4e36-a768-c68a8dee9461"
+                selectedItem.equals("Kitchen Supplies") -> category = "9e9550a9-6870-495c-b531-1fb04bb357a9"
+                selectedItem.equals("Outdoor Equipment") -> category = "a7b1d5cd-7cb2-4acf-ad40-23e65696b297"
+                selectedItem.equals("Pet Supplies") -> category = "0149bbed-90dd-4e13-a441-62276314dabe"
+                selectedItem.equals("Office Supplies") -> category = "97880dd0-b1e0-4b01-baee-8db329716314"
+            }
+
             baseQty = etBaseQuantity.text.toString()
             baseQuantity = baseQty.toInt()
             description = etDescription.text.toString()
-            category = spinnerCategory.selectedItem.toString()
+            //category = spinnerCategory.selectedItem.toString()
             name = etName.text.toString()
 
             var newItem = Item()
@@ -114,6 +123,8 @@ class AddItemActivity : AppCompatActivity() {
 
         itemNumber = intent.getStringExtra("ITEM_NUMBER")
         tvInventoryItemCode.setText(itemNumber)
-    }
 
+
+
+    }
 }
