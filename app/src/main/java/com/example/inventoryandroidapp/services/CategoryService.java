@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface CategoryService {
-    @GET("category")
-    Call<List<Category>> getCategories();
-
     /*@GET("category")
-    ArrayList<Category> getCategories(); */
+    Call<List<Category>> getCategories();*/
+
+    @GET("category")
+    List<Category> getCategories();
 }

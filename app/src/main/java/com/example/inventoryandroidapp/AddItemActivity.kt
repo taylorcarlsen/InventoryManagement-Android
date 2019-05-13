@@ -53,9 +53,13 @@ class AddItemActivity : AppCompatActivity() {
                 var adapter: ArrayAdapter<Call<List<Category>>> = ArrayAdapter<Call<List<Category>>>(
                     mContext, android.R.layout.simple_spinner_dropdown_item,categories)
                 categorySpinner.setAdapter(adapter)*/
-                var adapter: ArrayAdapter<Category> = ArrayAdapter(mContext,
+
+                /*var adapter: ArrayAdapter<Category> = ArrayAdapter(mContext,
                     android.R.layout.simple_spinner_dropdown_item,response.body())
                 categorySpinner.setAdapter(adapter)
+                tvError.text = adapter.toString()*/
+
+                val fieldofficerlist: List<Category> = response.body().getCategories()
 
             }
         })
