@@ -36,12 +36,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var cameraSource: CameraSource
     private lateinit var tvBarcode: TextView
     lateinit var stringResponse: String
+    lateinit var idArray: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        idArray = ArrayList()
+        stringResponse = ""
         svBarcode = findViewById(R.id.svBarcode)
         tvBarcode = findViewById(R.id.tvBarcode)
 
@@ -62,22 +65,23 @@ class MainActivity : AppCompatActivity() {
         var itemService: ItemService = ServiceBuilder.builderService(ItemService::class.java)
         var itemRequest: Call<List<Item>> = itemService.getItems()
 
-        var itemArray : Call<List<Item>> = itemRequest
-
-        itemArray.enqueue(object : Callback<List<Item>> {
+        itemRequest.enqueue(object : Callback<List<Item>> {
             @SuppressLint("SetTextI18n")
             override fun onFailure(call: Call<List<Item>>, t: Throwable) {
                 //tvError.text = "Could not retrieve categories."
             }
 
             override fun onResponse(call: Call<List<Item>>, response: Response<List<Item>>) {
-                stringResponse = response.body().toString()
+                response.body()?.forEach {
+                    stringResponse = it.id.toString()
+                    idArray.add(stringResponse)
+                }
             }
         })
 
         fabAddItem.setOnClickListener { view ->
 
-            if(stringResponse.contains(tvBarcode.text)){
+            if(idArray.contains(tvBarcode.text)){
                 val activityIntent = Intent(this, AddInventoryActivity::class.java)
                 activityIntent.putExtra("ITEM_NUMBER", tvBarcode.text)
                 startActivity(activityIntent)
