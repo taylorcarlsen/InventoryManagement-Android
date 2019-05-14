@@ -7,8 +7,8 @@ import java.util.UUID;
 public class Inventory {
     private UUID Id;
     private int Quantity;
-    private int UserId;
     private int ItemId;
+    private int UserId;
     private LocalDateTime Date;
 
     public Inventory(){

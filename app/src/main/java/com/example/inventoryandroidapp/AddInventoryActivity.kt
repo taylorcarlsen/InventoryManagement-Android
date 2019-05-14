@@ -22,7 +22,7 @@ import java.util.*
 class AddInventoryActivity : AppCompatActivity() {
 
     private var itemNumber = ""
-    private var baseQuantity = 0
+    private var baseQuantity = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ class AddInventoryActivity : AppCompatActivity() {
 
         fab.setOnClickListener { view ->
             itemNumber = tvInventoryItemCode.text.toString()
-            baseQuantity = etInventoryQuantity.text.toString().toInt()
+            baseQuantity = etInventoryQuantity.text.toString()
 
             var newInventory = Inventory()
             /*newInventory.itemId = itemNumber.toInt()
@@ -40,11 +40,11 @@ class AddInventoryActivity : AppCompatActivity() {
             newInventory.id = UUID.randomUUID()
             newInventory.userId = 99
             newInventory.date = LocalDateTime.now()*/
-            newInventory.setId(UUID.randomUUID())
+            //newInventory.setId(UUID.randomUUID())
+            newInventory.setQuantity(baseQuantity.toInt())
             newInventory.setItemId(itemNumber.toInt())
-            newInventory.setQuantity(baseQuantity)
             newInventory.setUserId(99)
-            newInventory.setDate(LocalDateTime.now())
+            //newInventory.setDate(LocalDateTime.now())
 
             fun sendIntent(){
                 val activityIntent = Intent(this, MainActivity::class.java)
@@ -62,10 +62,7 @@ class AddInventoryActivity : AppCompatActivity() {
                 }
 
                 override fun onResponse(call: Call<Inventory>, response: Response<Inventory>) {
-                    /*Snackbar.make(view, "Inventory created.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show()*/
-                    var stringResponse: String = response.body().toString()
-                    //sendIntent()
+                    sendIntent()
                 }
             })
         }
