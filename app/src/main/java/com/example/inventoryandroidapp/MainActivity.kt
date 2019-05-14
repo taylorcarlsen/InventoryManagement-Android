@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
         var itemArray : Call<List<Item>> = itemRequest
 
-        itemRequest.enqueue(object : Callback<List<Item>> {
+        itemArray.enqueue(object : Callback<List<Item>> {
             @SuppressLint("SetTextI18n")
             override fun onFailure(call: Call<List<Item>>, t: Throwable) {
                 //tvError.text = "Could not retrieve categories."
