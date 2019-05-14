@@ -62,10 +62,10 @@ class AddInventoryActivity : AppCompatActivity() {
                 }
 
                 override fun onResponse(call: Call<Inventory>, response: Response<Inventory>) {
-                    Snackbar.make(view, "Inventory created.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show()
-
-                    sendIntent()
+                    /*Snackbar.make(view, "Inventory created.", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show()*/
+                    var stringResponse: String = response.body().toString()
+                    //sendIntent()
                 }
             })
         }

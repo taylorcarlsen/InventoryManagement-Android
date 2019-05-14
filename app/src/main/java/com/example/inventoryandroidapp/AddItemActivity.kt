@@ -109,6 +109,7 @@ class AddItemActivity : AppCompatActivity() {
                 }
 
                 override fun onResponse(call: Call<Item>, response: Response<Item>) {
+                    var stringResponse: String = response.body().toString()
                     sendIntent()
                 }
             })
