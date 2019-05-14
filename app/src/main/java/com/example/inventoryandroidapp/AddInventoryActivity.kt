@@ -70,7 +70,7 @@ class AddInventoryActivity : AppCompatActivity() {
             })
         }
 
-        itemNumber = intent.getStringExtra("ADDED_ITEM_NUMBER")
+        itemNumber = intent.getStringExtra("ITEM_NUMBER")
         tvInventoryItemCode.setText(itemNumber)
     }
 

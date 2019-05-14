@@ -95,7 +95,7 @@ class AddItemActivity : AppCompatActivity() {
 
             fun sendIntent(){
                 val activityIntent = Intent(this, AddInventoryActivity::class.java)
-                activityIntent.putExtra("ADDED_ITEM_NUMBER", tvInventoryItemCode.text.toString())
+                activityIntent.putExtra("ITEM_NUMBER", tvInventoryItemCode.text.toString())
                 startActivity(activityIntent)
             }
 
