@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class Inventory {
     private UUID Id;
-    private int Quantity;
+    private int Qty;
     private int ItemId;
     private int UserId;
     private LocalDateTime Date;
@@ -19,8 +19,8 @@ public class Inventory {
         return Id;
     }
 
-    public int getQuantity() {
-        return Quantity;
+    public int getQty() {
+        return Qty;
     }
 
     public int getUserId() {
@@ -31,26 +31,25 @@ public class Inventory {
         return ItemId;
     }
 
-    public LocalDateTime getDate() {
-        return Date;
-    }
+    public LocalDateTime getDate() { return Date; }
 
     //Setters
+
 
     public void setId(UUID id) {
         Id = id;
     }
 
-    public void setQuantity(int quantity) {
-        Quantity = quantity;
-    }
-
-    public void setUserId(int userId) {
-        UserId = userId;
+    public void setQty(int qty) {
+        Qty = qty;
     }
 
     public void setItemId(int itemId) {
         ItemId = itemId;
+    }
+
+    public void setUserId(int userId) {
+        UserId = userId;
     }
 
     public void setDate(LocalDateTime date) {

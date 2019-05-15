@@ -8,21 +8,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.inventoryandroidapp.models.Inventory
 import com.example.inventoryandroidapp.services.InventoryService
 import com.example.inventoryandroidapp.services.ServiceBuilder
-
 import kotlinx.android.synthetic.main.activity_add_inventory.*
 import kotlinx.android.synthetic.main.content_add_inventory.*
 import kotlinx.android.synthetic.main.content_add_item.tvInventoryItemCode
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 class AddInventoryActivity : AppCompatActivity() {
 
     private var itemNumber = ""
-    private var baseQuantity = ""
+    private var quantity = ""
+    private var intQuantity = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +29,8 @@ class AddInventoryActivity : AppCompatActivity() {
 
         fab.setOnClickListener { view ->
             itemNumber = tvInventoryItemCode.text.toString()
-            baseQuantity = etInventoryQuantity.text.toString()
+            quantity = etInventoryQuantity.text.toString()
+            intQuantity = quantity.toInt()
 
             var newInventory = Inventory()
             /*newInventory.itemId = itemNumber.toInt()
@@ -41,7 +39,7 @@ class AddInventoryActivity : AppCompatActivity() {
             newInventory.userId = 99
             newInventory.date = LocalDateTime.now()*/
             //newInventory.setId(UUID.randomUUID())
-            newInventory.setQuantity(baseQuantity.toInt())
+            newInventory.setQty(intQuantity)
             newInventory.setItemId(itemNumber.toInt())
             newInventory.setUserId(99)
             //newInventory.setDate(LocalDateTime.now())
