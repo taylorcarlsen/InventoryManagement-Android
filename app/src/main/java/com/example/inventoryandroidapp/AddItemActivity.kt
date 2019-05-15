@@ -53,6 +53,7 @@ class AddItemActivity : AppCompatActivity() {
             categorySpinner.adapter = adapter
         }
 
+        var responseString = ""
         var categoryService: CategoryService = ServiceBuilder.builderService(CategoryService::class.java)
         var categoryRequest: Call<List<Category>> = categoryService.getCategories()
 
@@ -68,6 +69,10 @@ class AddItemActivity : AppCompatActivity() {
                 /*var adapter: ArrayAdapter<Category> = ArrayAdapter(mContext,
                     android.R.layout.simple_spinner_dropdown_item,response.body())
                 categorySpinner.setAdapter(adapter)*/
+                response.body()?.forEach{
+                    responseString = it.description.toString()
+                    categoryDescriptions.add(responseString)
+                }
             }
         })
 

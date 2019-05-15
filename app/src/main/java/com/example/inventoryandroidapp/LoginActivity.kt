@@ -15,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.net.CacheResponse
+import java.security.MessageDigest
 
 class LoginActivity : AppCompatActivity() {
 
@@ -25,6 +26,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         setSupportActionBar(toolbar)
         var mContext: Context = this
+
+        var md: MessageDigest = MessageDigest.getInstance("SHA-1")
 
         fab.setOnClickListener { view ->
 

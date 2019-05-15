@@ -11,4 +11,5 @@
         <item>Outdoor Equipment</item>
         <item>Pet Supplies</item>
     </string-array>
+    <string-array name="service_category_array"></string-array>
 </resources>
