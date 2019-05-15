@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvBarcode: TextView
     lateinit var stringResponse: String
     lateinit var idArray: ArrayList<String>
+    private lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +85,8 @@ class MainActivity : AppCompatActivity() {
             if(idArray.contains(tvBarcode.text)){
                 val activityIntent = Intent(this, AddInventoryActivity::class.java)
                 activityIntent.putExtra("ITEM_NUMBER", tvBarcode.text)
-                startActivity(activityIntent)
+                activityIntent.putExtra("EMPLOYEE_ID",userId)
+                    startActivity(activityIntent)
             }else {
                 val activityIntent = Intent(this, AddItemActivity::class.java)
                 activityIntent.putExtra("ITEM_NUMBER", tvBarcode.text)
@@ -109,6 +111,7 @@ class MainActivity : AppCompatActivity() {
                     arrayOf(android.Manifest.permission.CAMERA),123)
             }
         })
+        userId = intent.getStringExtra("EMPLOYEE_ID")
     }
 
     @SuppressLint("MissingPermission")

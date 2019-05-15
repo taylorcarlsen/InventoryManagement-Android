@@ -20,6 +20,8 @@ class AddInventoryActivity : AppCompatActivity() {
     private var itemNumber = ""
     private var quantity = ""
     private var intQuantity = 0
+    private var userId = ""
+    private var intUserId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,7 @@ class AddInventoryActivity : AppCompatActivity() {
             itemNumber = tvInventoryItemCode.text.toString()
             quantity = etInventoryQuantity.text.toString()
             intQuantity = quantity.toInt()
+            intUserId = userId.toInt()
 
             var newInventory = Inventory()
             /*newInventory.itemId = itemNumber.toInt()
@@ -41,7 +44,7 @@ class AddInventoryActivity : AppCompatActivity() {
             //newInventory.setId(UUID.randomUUID())
             newInventory.setQty(intQuantity)
             newInventory.setItemId(itemNumber.toInt())
-            newInventory.setUserId(99)
+            newInventory.setUserId(intUserId)
             //newInventory.setDate(LocalDateTime.now())
 
             fun sendIntent(){
@@ -67,6 +70,7 @@ class AddInventoryActivity : AppCompatActivity() {
 
         itemNumber = intent.getStringExtra("ITEM_NUMBER")
         tvInventoryItemCode.setText(itemNumber)
+        userId = intent.getStringExtra("EMPLOYEE_ID")
     }
 
 }

@@ -31,9 +31,7 @@ class LoginActivity : AppCompatActivity() {
             stringResponse = ""
             var employeeId = etEmployeeID.text.toString()
             var intEmployeeId = employeeId.toInt()
-            var employeePassword = ""
-            employeePassword = etPassword.text.toString()
-
+            var employeePassword = etPassword.text.toString()
             var userService: UserService = ServiceBuilder.builderService(UserService::class.java)
             var userResquest: Call<User> = userService.getUser(intEmployeeId)
 

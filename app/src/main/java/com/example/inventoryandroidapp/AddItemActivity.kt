@@ -29,6 +29,7 @@ class AddItemActivity : AppCompatActivity() {
     private var category = ""
     private var name = ""
     private var baseQty = ""
+    private var userId = ""
     private lateinit var categoryArrayList: ArrayList<Category>
     private lateinit var categoryDescriptions: ArrayList<String>
 
@@ -96,6 +97,7 @@ class AddItemActivity : AppCompatActivity() {
             fun sendIntent(){
                 val activityIntent = Intent(this, AddInventoryActivity::class.java)
                 activityIntent.putExtra("ITEM_NUMBER", tvInventoryItemCode.text.toString())
+                activityIntent.putExtra("EMPLOYEE_ID",userId)
                 startActivity(activityIntent)
             }
 
@@ -117,8 +119,6 @@ class AddItemActivity : AppCompatActivity() {
 
         itemNumber = intent.getStringExtra("ITEM_NUMBER")
         tvInventoryItemCode.setText(itemNumber)
-
-
-
+        userId = intent.getStringExtra("EMPLOYEE_ID")
     }
 }
